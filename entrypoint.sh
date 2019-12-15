@@ -57,5 +57,11 @@ extlinux --install /mnt/boot/extlinux
 # copy config files, ipxe
 cp -R /opt/. /mnt/boot/extlinux
 
+# unmount
+sync && umount /mnt/boot
+
 # detach loop device
 losetup --detach $LOOPDEV
+
+# compress image
+gzip ${VIRTUAL_DISK}

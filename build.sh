@@ -24,4 +24,4 @@ docker run \
     hypersolid-boot-cloudserver
 
 # copy disk image
-docker cp hypersolid-boot-cloudserver-env:/tmp/disk.img $WORKINGDIR/dist/boot.img
+docker cp hypersolid-boot-cloudserver-env:/tmp/disk.img.gz $WORKINGDIR/dist/boot.img.gz

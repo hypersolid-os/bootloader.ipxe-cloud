@@ -18,7 +18,7 @@ Most hosting providers offering a rescue-system or supports raw system images di
 The final image can be directly copied onto the boot disk of the system using dd:
 
 ```bash
-dd if=disk.img of=/dev/sdX bs=4M
+gzip -d -c boot.img.gz | dd bs=4M status=progress of=/dev/sdX
 ```
 
 Build image
@@ -136,7 +136,7 @@ Partition layout
 This bootloader generator creates a GPT based partition layout (of course, syslinux can handle it).
 
 * Partition 1 "boot" - `10MB` | `EXT2` (required for extlinux!) | bootloader partition including extlinux+ipxe
-* Partition 2 "conf" - `500MB` | `EXT4` (required for extlinux!) | persistent data storage partition
+* Partition 2 "conf" - `500MB` | `EXT4` | persistent data storage partition
 
 IPXE binary
 ===================
