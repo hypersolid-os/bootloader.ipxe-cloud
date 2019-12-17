@@ -18,7 +18,11 @@ Most hosting providers offering a rescue-system or supports raw system images di
 The final image can be directly copied onto the boot disk of the system using dd:
 
 ```bash
+# extract image and write to disk
 gzip -d -c boot.img.gz | dd bs=4M status=progress of=/dev/sdX
+
+# create new uuid's and rewrite secondary GPT table to the end of the disk
+sgdisk -G /dev/sdX
 ```
 
 Build image

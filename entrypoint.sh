@@ -24,8 +24,8 @@ truncate --size 512M $VIRTUAL_DISK
 # Create partition layout
 # set "Legacy BIOS bootable flag" for boot parition (tag required by gptmbr.bin)
 sgdisk --clear \
-  --new 1::+10M --typecode=1:8300 --change-name=1:'extlinux' --attributes=1:set:2 \
-  --new 2::-0 --typecode=2:8300 --change-name=2:'config' \
+  --new 1::+10M --typecode=1:8300 --change-name=1:'boot' --attributes=1:set:2 \
+  --new 2::-0 --typecode=2:8300 --change-name=2:'conf' \
   ${VIRTUAL_DISK}
 
 # show layout
