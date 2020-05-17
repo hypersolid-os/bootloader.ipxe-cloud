@@ -1,4 +1,4 @@
 .hidden/*
-ipxe/ipxe.lkrn
+ipxe/*.lkrn
 dist/*
 !dist/.empty

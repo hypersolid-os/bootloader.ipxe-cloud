@@ -30,7 +30,47 @@ Build image
 
 This bootloader generator creates a raw GPT disk image with 2 paritions (boot, config) including all required bootloader files + configs. The build environment is isolated within a docker container but requires full system access (privileged mode) due to the use of loop devices.
 
-To build the disk image, you have do add the `ipxe.lkrn` binary into `ipxe/` directory. 
+To build the disk image, you have do add the `ipxe.lkrn` binary into `ipxe/` directory. Optionally place a `ipxe.conf` file into this directory if your not using a embedded ipxe script.
+
+### Embedded iPXE script ###
+
+**File** `extlinux/extlinux.conf`
+
+```conf
+DEFAULT ipxe
+  SAY booting iPXE from SYSLINUX
+LABEL ipxe
+  LINUX ipxe64.lkrn
+```
+
+### External iPXE script ###
+
+**File** `extlinux/extlinux.conf`
+
+```conf
+DEFAULT ipxe
+  SAY booting iPXE from SYSLINUX
+LABEL ipxe
+  LINUX ipxe64.lkrn
+  INITRD ipxe.conf
+```
+
+**File** `ipxe/ipxe.conf`
+
+```conf
+#!ipxe
+
+echo booting LINUX from iPXE
+
+# network setup
+# ------------------------------------------------------------------
+
+# try to get an IP via dhcp
+dhcp
+chain http://ipxe1.example.org/myconfig.ipxe?serial=${serial}
+```
+
+### Run Build ###
 
 Finally run `build.sh` to build the docker image and trigger the image build script. The disk image will be copied into the `dist/` directory.
 
