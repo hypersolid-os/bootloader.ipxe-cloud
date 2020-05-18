@@ -40,7 +40,7 @@ To build the disk image, you have do add the `ipxe.lkrn` binary into `ipxe/` dir
 DEFAULT ipxe
   SAY booting iPXE from SYSLINUX
 LABEL ipxe
-  LINUX ipxe64.lkrn
+  LINUX ipxe.lkrn
 ```
 
 ### External iPXE script ###
@@ -51,7 +51,7 @@ LABEL ipxe
 DEFAULT ipxe
   SAY booting iPXE from SYSLINUX
 LABEL ipxe
-  LINUX ipxe64.lkrn
+  LINUX ipxe.lkrn
   INITRD ipxe.conf
 ```
 
